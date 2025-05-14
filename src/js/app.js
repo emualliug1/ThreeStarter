@@ -17,12 +17,6 @@ const graphic = new Graphic(scene, camera)
 //loop
 graphic.onUpdate(dt => {
 
-    meshes.forEach(mesh => {
-        if (mesh.name === 'Cuisine') {
-            mesh.rotation.x += 0.5 * dt
-            mesh.rotation.y += 0.5 * dt
-        }
-    })
 })
 
 
