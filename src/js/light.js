@@ -1,20 +1,15 @@
-import {AmbientLight , PointLight,Object3D} from 'three';
+import {AmbientLight ,SpotLight,Object3D} from 'three';
 
 export default class Light extends Object3D{
     pointLight = null;
     ambientLight = null;
     constructor(){
         super();
-        this.ambientLight = new AmbientLight(0xffffff, 2);
-        this.pointLight = new PointLight(0xffffff, 50);
-        this.pointLight.position.set(0, 10, 0);
+        this.ambientLight = new AmbientLight(0xffffff, 1);
+        this.spotLight = new SpotLight(0xffffff, 20);
+        this.spotLight.position.set(0, 3, 0);
         this.add(this.ambientLight);
-        this.add(this.pointLight);
+        this.add(this.spotLight);
     }
-
-    get intensity(){
-        return this.pointLight.intensity;
-    }
-
 
 }

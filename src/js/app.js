@@ -1,35 +1,29 @@
 import '../css/style.css'
-import { Scene, AxesHelper, Color} from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { Scene} from 'three'
 import Camera from './camera.js'
 import Light from './light.js'
 import Graphic from './graphic.js'
 import {loadAssets} from './load.js'
+import TweakPane from './tweakpane.js'
+import Helper from './helper.js'
 
-
-const meshes = await loadAssets('')
+//Three.js
+const meshes = await loadAssets('meshes/exemple.glb')
 const camera = new Camera()
 const scene = new Scene()
-scene.background = new Color('#77b5fe')
 const light = new Light()
 const graphic = new Graphic(scene, camera)
+const helper = new Helper(camera,light,graphic.domElement)
 
-//loop
 graphic.onUpdate(dt => {
 
 })
 
-
-
 scene.add(light)
 scene.add(...meshes)
+scene.add(helper)
 
-
-// ==========DEV=============
-const size = 10
-const axesHelper = new AxesHelper(size)
-scene.add(axesHelper)
-const controls = new OrbitControls(camera, graphic.domElement);
-controls.enableDamping = true
-// =========================
-
+//TweakPane
+const tweakPane = new TweakPane(camera,light)
+tweakPane.createPaneLight()
+tweakPane.createPaneCamera()

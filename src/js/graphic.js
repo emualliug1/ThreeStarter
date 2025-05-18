@@ -16,6 +16,7 @@ export default class Graphic extends WebGLRenderer {
         document.body.appendChild( this.domElement )
         this.setSize(innerWidth, innerHeight)
         this.loop()
+        window.addEventListener('resize', this.resize.bind(this))
     }
 
     loop() {
@@ -30,9 +31,12 @@ export default class Graphic extends WebGLRenderer {
     }
 
     resize() {
-        const width = innerWidth
-        const height = innerHeight
-        this.setSize(width, height)
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        this.setSize(width, height);
+        this.camera.aspect = width / height;
+        this.camera.updateProjectionMatrix();
     }
+
 
 }
